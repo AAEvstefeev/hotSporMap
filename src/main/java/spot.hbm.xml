@@ -1,0 +1,13 @@
+<hibernate-mapping>
+  <class name="model.spot" table="spots">
+    <id column="id" name="id" type="java.lang.Long">
+      <generator class="increment"/>
+    </id>
+    <property column="latitude" name="latitude" type="java.lang.Double"/>
+    <property column="longitude" name="longitude" type="java.lang.Double"/>
+    <property column="Address" name="addres" type="java.lang.String"/>
+    <property column="imageurl" name="imageUrl" type="java.lang.String"/>
+  
+
+  </class>
+</hibernate-mapping>

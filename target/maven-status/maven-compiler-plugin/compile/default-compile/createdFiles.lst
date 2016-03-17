@@ -1,0 +1,12 @@
+com/bane/app/controller/FirstController.class
+com/bane/app/config/WebConfig.class
+utils/HibernateUtils.class
+utils/SpotDAOImpl.class
+com/bane/app/dao/NextVideoDao.class
+com/bane/app/service/ExampleService.class
+model/MyObject.class
+com/bane/app/Main.class
+com/bane/app/config/ApplicationInitializer.class
+com/bane/app/controller/AwesomeController.class
+model/spot.class
+com/bane/app/config/AppConfig.class
