@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-
+        <spring.security.version>3.2.3.RELEASE</spring.security.version>
         <junit.version>4.12</junit.version>
         <spring.version>4.2.3.RELEASE</spring.version>
         <springboot.version>1.3.0.RELEASE</springboot.version>
@@ -19,7 +19,7 @@
 		<org.springframework.roo-version>1.0.2.RELEASE</org.springframework.roo-version>
 		<springboot.version>1.3.0.RELEASE</springboot.version>
         <jackson.version>2.7.0</jackson.version>
-        
+        <jstl.version>1.2</jstl.version>
     </properties>
     <dependencies>
     <dependency>
@@ -94,7 +94,26 @@
             <version>${springboot.version}</version>
         </dependency>
 
-		
+
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <!-- jstl for jsp page -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
 		<!-- Roo dependencies -->
 		<dependency>
 			<groupId>org.springframework.roo</groupId>
