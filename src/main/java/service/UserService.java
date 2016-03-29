@@ -2,12 +2,12 @@ package service;
 
 import java.util.List;
 
+import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
 
 import dao.UserDAO;
-import model.User;
 
 @Service
 public class UserService {
@@ -15,7 +15,7 @@ public class UserService {
 	 @Autowired
 	    private UserDAO userDAO;
 	 
-	 //   @Transactional
+	  // @Transactional
 	    public void addUser(User user) {
 	        userDAO.addUser(user);
 	    }

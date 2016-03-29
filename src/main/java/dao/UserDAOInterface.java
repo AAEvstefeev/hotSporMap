@@ -1,8 +1,8 @@
 package dao;
 
-import java.util.List;
-
 import model.User;
+
+import java.util.List;
 
 public interface UserDAOInterface {
 	public void addUser(User user);

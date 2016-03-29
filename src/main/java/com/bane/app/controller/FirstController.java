@@ -1,15 +1,13 @@
 package com.bane.app.controller;
 
+import model.Spot;
+import model.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import model.MyObject;
-import model.User;
-import model.spot;
 import service.UserService;
 import utils.SpotDAOImpl;
 
@@ -18,7 +16,7 @@ import java.util.List;
 import java.util.Random;
 
 @Controller
-@RequestMapping(value = "/first")
+@RequestMapping(value = "/spot")
 public class FirstController {
 
     @RequestMapping(value = "/random", method = RequestMethod.GET)
@@ -35,11 +33,11 @@ public class FirstController {
     	
     }
     
-    @RequestMapping(method=RequestMethod.GET, value="/spots/", headers="Accept=application/json")
-    public @ResponseBody List<spot> getAllSpots() {
+    @RequestMapping(method=RequestMethod.GET, value="/list", headers="Accept=application/json")
+    public @ResponseBody List<Spot> getAllSpots() {
     	
     try {
-		return (List<spot>) new SpotDAOImpl().getAllSpots();
+		return (List<Spot>) new SpotDAOImpl().getAllSpots();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -56,8 +54,8 @@ public class FirstController {
   
     }
     
-    @RequestMapping(method=RequestMethod.POST, value="/add_spot/", headers="Accept=application/json")
-    public @ResponseBody boolean addSpot(@RequestBody spot s) {
+    @RequestMapping(method=RequestMethod.POST, value="/add", headers="Accept=application/json")
+    public @ResponseBody boolean addSpot(@RequestBody Spot s) {
     	 try {
 			new SpotDAOImpl().addSpot(s);
 			return true;
@@ -70,21 +68,14 @@ public class FirstController {
     }
     
     
-    @RequestMapping(method=RequestMethod.GET, value="/my_object/", headers="Accept=application/xml")
-    public @ResponseBody MyObject getMap() {
-    MyObject myObject = new MyObject("my super obeject", 4, true);
-    myObject.setLatitude(0.3);
-    myObject.setLongitute(0.4f);
-    //employeeDS.get(Long.parseLong(id));
-    return myObject;
-    }
+
     
     
     
    /* 	
     @RequestMapping(method=RequestMethod.GET, value="/emps", headers="Accept=application/json")
     public @ResponseBody spotListinggetAllEmp() {
-    List<spot> spots = spotDS.getAll();
+    List<Spot> spots = spotDS.getAll();
     spotListinglist = new EmployeeList(spots);
     return list;
     }

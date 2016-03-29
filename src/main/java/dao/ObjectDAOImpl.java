@@ -1,28 +1,27 @@
-package utils;
+package dao;
 
+import model.ObjectDAO;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
+import utils.HibernateUtils;
+
+import javax.swing.*;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
-import model.Spot;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.jgroups.util.UUID;
-import org.springframework.stereotype.Repository;
-
 @Repository
-public class SpotDAOImpl  {
+public class ObjectDAOImpl {
 
 	
-	  public void addSpot(Spot s) throws SQLException {
+	  public void add(ObjectDAO objectDAO) throws SQLException {
 		//  sessionFactory.getCurrentSession().save(s);
 		    Session session = null;
 		    try {
 		      session = HibernateUtils.getSessionFactory().openSession();
 		      session.beginTransaction();
 
-		      session.save(s);
+		      session.save(objectDAO);
 		      session.getTransaction().commit();
 		    } catch (Exception e) {
 		    	e.printStackTrace();
@@ -35,12 +34,12 @@ public class SpotDAOImpl  {
 		    }
 		  }
 
-		  public void updateBus(Long bus_id, Spot s) throws SQLException {
+		  public void update(ObjectDAO objectDAO) throws SQLException {
 		    Session session = null;
 		    try {
 		      session = HibernateUtils.getSessionFactory().openSession();
 		      session.beginTransaction();
-		      session.update(s);
+		      session.update(objectDAO);
 		      session.getTransaction().commit();
 		    } catch (Exception e) {
 		      JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка при вставке", JOptionPane.OK_OPTION);
@@ -51,12 +50,12 @@ public class SpotDAOImpl  {
 		    }
 		  }
 
-		  public Spot getBusById(Long id) throws SQLException {
+		  public ObjectDAO get(String id) throws SQLException {
 		    Session session = null;
-		    Spot bus = null;
+		    ObjectDAO objectDAO = null;
 		    try {
 		      session = HibernateUtils.getSessionFactory().openSession();
-		      bus = (Spot) session.load(Spot.class, id);
+		      objectDAO = (ObjectDAO) session.load(objectDAO.getClass(), id);
 		    } catch (Exception e) {
 		      JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка 'findById'", JOptionPane.OK_OPTION);
 		    } finally {
@@ -64,24 +63,24 @@ public class SpotDAOImpl  {
 		        session.close();
 		      }
 		    }
-		    return bus;
+		    return objectDAO;
 		  }
 
-		  public List<Spot> getAllSpots() throws SQLException {
+		  public List<ObjectDAO> list() throws SQLException {
 			  Session s = HibernateUtils.getSessionFactory().openSession();
-			  Query q = s.createQuery("from Spot");
-			  List<Spot> spotList = q.list();
+			  Query q = s.createQuery("from"+ObjectDAO.tableName);
+			  List<ObjectDAO> ObjectDAOList = q.list();
 			  s.close();
-			return spotList; 
+			return ObjectDAOList;
 		   
 		  }
 
-		  public void deleteBus(Spot s) throws SQLException {
+		  public void delete(ObjectDAO objectDAO) throws SQLException {
 		    Session session = null;
 		    try {
 		      session = HibernateUtils.getSessionFactory().openSession();
 		      session.beginTransaction();
-		      session.delete(s);
+		      session.delete(objectDAO);
 		      session.getTransaction().commit();
 		    } catch (Exception e) {
 		      JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка при удалении", JOptionPane.OK_OPTION);

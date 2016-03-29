@@ -1,8 +1,8 @@
 package service;
 
-import java.util.List;
-
 import model.User;
+
+import java.util.List;
 
 public interface UserServiceInterface {
 	public void addUser(User user);
