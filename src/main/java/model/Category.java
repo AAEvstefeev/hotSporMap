@@ -1,10 +1,15 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
-
+@Entity
+@Table(name = "Category")
 public class Category implements ObjectDAO{
     @Transient
     public String tableName = "Category";
+    @Id
     private String id;
     private String name;
     private boolean winter;

@@ -1,9 +1,6 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 @Entity
 @Table(name = "Comment")
@@ -16,8 +13,9 @@ public class Comment implements ObjectDAO{
     private String title;
     @Column(name = "text")
     private String text;
-    @Column(name = "attach")
+    @Transient
     private Attach attach;
+    @Transient
     private User user;
     @Column(name = "date")
     private Date date;

@@ -4,6 +4,7 @@ package model;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,8 @@ public class Spot implements ObjectDAO{
     private String name;
     @Column(name = "address")
     private String address;
-
+    @OneToOne
+    @JoinColumn(name = "id")
     private User creator;
     @Column(name = "rating")
     private double rating;
@@ -30,13 +32,14 @@ public class Spot implements ObjectDAO{
     private double safety;
     @Column(name = "complexity")
     private double complexity;
-    @OneToMany(targetEntity=Comment.class, mappedBy="spot", fetch=FetchType.EAGER)
+    @OneToMany(targetEntity=Comment.class, mappedBy="id", fetch=FetchType.EAGER)
     private List<Comment> comments;
-    @OneToMany(targetEntity=Category.class, mappedBy="spot", fetch=FetchType.EAGER)
+    @OneToMany(targetEntity=Category.class, mappedBy="id", fetch=FetchType.EAGER)
     private List<Category> category;
     @Column(name = "description")
     private String description;
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "id")
     private Image mainImage;
     @Column(name = "winter")
     private boolean winter;
@@ -91,7 +94,7 @@ public class Spot implements ObjectDAO{
         this.name = name;
     }
 
-    @OneToOne(mappedBy = "spot")
+    @OneToOne(mappedBy = "id")
     public User getCreator() {
         return creator;
     }
@@ -123,8 +126,7 @@ public class Spot implements ObjectDAO{
     public void setComplexity(double complexity) {
         this.complexity = complexity;
     }
-    @OneToMany(mappedBy="spot")
-    @OrderBy("title")
+    @OneToMany(mappedBy="id")
     public List<Comment> getComments() {
         return comments;
     }
@@ -157,8 +159,7 @@ public class Spot implements ObjectDAO{
     public String getAddress() {
         return address;
     }
-    @OneToMany(mappedBy="spot")
-    @OrderBy("name")
+    @OneToMany(mappedBy="Spot")
     public List<Category> getCategory() {
         return category;
     }
