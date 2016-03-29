@@ -2,15 +2,28 @@ package model;
 
 import ch.qos.logback.classic.db.names.TableName;
 
+import javax.persistence.*;
 import java.util.List;
-
+@Entity
 public class Attach implements ObjectDAO {
+    @Transient
     public String tableName = "Attach";
+    @Id
     private String id;
+   // @ElementCollection
+   // @CollectionTable(name = "imageUrl", joinColumns = @JoinColumn(name = "id"))
+    @Transient
     private List<String> imageUrlList;
+  //  @ElementCollection
+  //  @CollectionTable(name = "videoUrl", joinColumns = @JoinColumn(name = "id"))
+    @Transient
     private List<String> videoUrlList;
+    @OneToMany(targetEntity = Image.class, mappedBy = "id")
     private List<Image> imageList;
+    @OneToMany(targetEntity = Video.class, mappedBy = "id")
     private List<Video> videoList;
+    @OneToOne
+    @JoinColumn(name = "id")
     private User user;
 
     public String getId() {

@@ -1,8 +1,16 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+@Entity
 public class Image implements ObjectDAO {
+    @Transient
     public String tableName = "Image";
+    @Id
     private String id;
+    @Transient
     private byte[] images;
     private String url;
 

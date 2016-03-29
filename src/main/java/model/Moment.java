@@ -1,19 +1,21 @@
 package model;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class Moment implements ObjectDAO{
+    @Transient
     public String tableName = "Moment";
+    @Id
     private String id;
+
     private User user;
     private Date date;
     private Attach attach;
     private Double rating;
-    private List<Category> categorys;
+    private List<Category> category;
 
     public String getId() {
         return id;
@@ -55,12 +57,12 @@ public class Moment implements ObjectDAO{
         this.rating = rating;
     }
 
-    public List<Category> getCategorys() {
-        return categorys;
+    public List<Category> getCategory() {
+        return category;
     }
 
-    public void setCategorys(List<Category> categorys) {
-        this.categorys = categorys;
+    public void setCategory(List<Category> category) {
+        this.category = category;
     }
 
 }

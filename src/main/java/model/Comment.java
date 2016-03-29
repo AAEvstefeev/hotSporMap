@@ -13,9 +13,11 @@ public class Comment implements ObjectDAO{
     private String title;
     @Column(name = "text")
     private String text;
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "id")
     private Attach attach;
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "id")
     private User user;
     @Column(name = "date")
     private Date date;
